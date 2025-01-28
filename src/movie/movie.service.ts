@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
 import axios from "axios";
 
@@ -15,9 +16,22 @@ export class MovieService {
         },
       });
       return response.data;
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       throw new HttpException("Failed to fetch movies", HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  async findMovieById(id: string): Promise<any> {
+    try {
+      const response = await axios.get(this.apiUrl, {
+        params: {
+          i: id,
+          apikey: this.apiKey,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      throw new HttpException("Failed to fetch movie", HttpStatus.BAD_REQUEST);
     }
   }
 }

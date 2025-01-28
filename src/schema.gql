@@ -5,10 +5,12 @@
 type Movie {
   id: String!
   title: String!
+  year: String
   description: String!
   imageUrl: String!
 }
 
 type Query {
   searchMovies(query: String!): [Movie!]!
+  findMovieById(id: String!): Movie!
 }

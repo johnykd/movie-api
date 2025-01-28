@@ -13,14 +13,27 @@ export class MovieResolver {
   @Query(() => [Movie], { name: "searchMovies" })
   async searchMovies(@Args("query") query: string): Promise<Movie[]> {
     const data = await this.movieService.searchMovies(query);
-    console.log("first response", data);
     if (data) {
-      return data.Search.map((movie: any, index: number) => ({
-        id: index + 1,
+      return data.Search.map((movie: any) => ({
+        id: movie.imdbID,
         title: movie.Title,
-        description: movie.Year,
+        year: movie.Year,
         imageUrl: movie.Poster,
       }));
+    }
+    return data;
+  }
+
+  @Query(() => Movie, { name: "findMovieById" })
+  async findMovieById(@Args("id") id: string): Promise<Movie> {
+    const data = await this.movieService.findMovieById(id);
+    if (data) {
+      return {
+        id: data.imdbID,
+        title: data.Title,
+        description: data.Plot,
+        imageUrl: data.Poster,
+      };
     }
     return data;
   }

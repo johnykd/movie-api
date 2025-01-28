@@ -1,4 +1,4 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field } from "@nestjs/graphql";
 
 @ObjectType()
 export class Movie {
@@ -7,6 +7,9 @@ export class Movie {
 
   @Field()
   title: string;
+
+  @Field({ nullable: true })
+  year?: string;
 
   @Field()
   description: string;

@@ -1,7 +1,7 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { MovieResolver } from './movie.resolver';
+import { Test, TestingModule } from "@nestjs/testing";
+import { MovieResolver } from "./movie.resolver";
 
-describe('MovieResolver', () => {
+describe("MovieResolver", () => {
   let resolver: MovieResolver;
 
   beforeEach(async () => {
@@ -12,7 +12,7 @@ describe('MovieResolver', () => {
     resolver = module.get<MovieResolver>(MovieResolver);
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(resolver).toBeDefined();
   });
 });
